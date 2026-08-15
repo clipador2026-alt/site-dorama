@@ -1,8 +1,40 @@
 const dramas = [
-  { title: "When the Spring Comes", meta: "Romance • 2026", tone: "pink", emoji: "🌸" },
-  { title: "Seoul After Rain", meta: "Romance • Drama", tone: "blue", emoji: "☔" },
-  { title: "Our Little Recipe", meta: "Comédia • Romance", tone: "cream", emoji: "🍜" },
-  { title: "Moonlight Contract", meta: "Fantasia • Romance", tone: "green", emoji: "🌙" },
+  {
+    title: "When the Spring Comes",
+    meta: "Romance • 2026",
+    tone: "pink",
+    emoji: "🌸",
+    status: "EM EXIBIÇÃO",
+    rating: "9.1",
+    tag: "♡ favorito",
+  },
+  {
+    title: "Seoul After Rain",
+    meta: "Romance • Drama",
+    tone: "blue",
+    emoji: "☔",
+    status: "NOVO",
+    rating: "8.8",
+    tag: "chuva + romance",
+  },
+  {
+    title: "Our Little Recipe",
+    meta: "Comédia • Romance",
+    tone: "cream",
+    emoji: "🍜",
+    status: "QUENTINHO",
+    rating: "9.0",
+    tag: "food drama",
+  },
+  {
+    title: "Moonlight Contract",
+    meta: "Fantasia • Romance",
+    tone: "green",
+    emoji: "🌙",
+    status: "TRENDING",
+    rating: "9.3",
+    tag: "slow burn",
+  },
 ];
 
 const news = [
@@ -11,23 +43,63 @@ const news = [
   "Onde assistir aos principais K-Dramas da semana",
 ];
 
-function DramaCard({ drama }: { drama: typeof dramas[number] }) {
+const actors = [
+  { name: "Ji-hyun", role: "atriz favorita", tone: "blush", emoji: "🌸" },
+  { name: "Min-jae", role: "novo crush", tone: "sky", emoji: "⭐" },
+  { name: "Seo-jun", role: "rei do romance", tone: "butter", emoji: "👑" },
+  { name: "Ha-neul", role: "cena roubada", tone: "mint", emoji: "♡" },
+];
+
+const classics = [
+  { title: "Seoul 1988", label: "clássico", tone: "pink" },
+  { title: "Incha Candy", label: "conforto", tone: "cream" },
+  { title: "Meet Your Dream Cast", label: "favorito", tone: "blue" },
+];
+
+const categories = [
+  { name: "Romance", copy: "borboletas no estômago", emoji: "🌸", className: "romance" },
+  { name: "Comédia", copy: "para rir e relaxar", emoji: "🍜", className: "comedy" },
+  { name: "Fantasia", copy: "um pouco de magia", emoji: "🌙", className: "fantasy" },
+  { name: "Suspense", copy: "não pisque", emoji: "🎞️", className: "thriller" },
+];
+
+function DramaCard({ drama }: { drama: (typeof dramas)[number] }) {
   return (
     <article className={`drama-card ${drama.tone}`}>
-      <div className="card-art">
-        <span className="sticker">{drama.emoji}</span>
-        <span className="mini-label">K-DRAMA</span>
-        <div className="fake-poster">
+      <div className="poster">
+        <span className="poster-sticker">{drama.emoji}</span>
+        <span className="poster-status">{drama.status}</span>
+        <span className="poster-tape" />
+        <div className="poster-scene">
           <span>{drama.title.split(" ")[0]}</span>
           <strong>{drama.title.split(" ").slice(1).join(" ")}</strong>
+          <small>{drama.meta}</small>
         </div>
-        <span className="heart">♡</span>
+        <span className="poster-heart">♡</span>
       </div>
-      <div className="card-copy">
-        <h3>{drama.title}</h3>
-        <p>{drama.meta}</p>
-        <span className="rating">★ 9.0</span>
+      <div className="drama-info">
+        <div>
+          <span className="mini-korean">사랑해</span>
+          <h3>{drama.title}</h3>
+          <p>{drama.meta}</p>
+        </div>
+        <span className="rating">★ {drama.rating}</span>
       </div>
+      <div className="card-tag">{drama.tag}</div>
+    </article>
+  );
+}
+
+function ActorCard({ actor }: { actor: (typeof actors)[number] }) {
+  return (
+    <article className={`actor-card ${actor.tone}`}>
+      <div className="actor-photo">
+        <span className="actor-sticker">{actor.emoji}</span>
+        <span className="actor-portrait">{actor.name.slice(0, 1)}</span>
+        <span className="actor-badge">♥</span>
+      </div>
+      <strong>{actor.name}</strong>
+      <small>{actor.role}</small>
     </article>
   );
 }
@@ -35,133 +107,311 @@ function DramaCard({ drama }: { drama: typeof dramas[number] }) {
 export default function Home() {
   return (
     <main>
-      <div className="top-note">서울 · K-DRAMA · 사랑해 · SEOUL · 🌸</div>
+      <div className="top-strip">
+        <span>서울 · SEOUL</span>
+        <span>✿ K-DRAMA · 사랑해 · WATCHLIST ♡</span>
+        <span>오늘도 정주행 중 🎬</span>
+      </div>
 
-      <header className="header">
+      <header className="site-header">
         <a className="brand" href="#">
-          <span className="brand-flower">✿</span>
-          <span>
+          <span className="brand-icon">🌸</span>
+          <span className="brand-copy">
             <small>THE K-DRAMA JOURNAL</small>
-            SEOUL<span>BLOOM</span>
+            SEOUL <b>BLOOM</b>
           </span>
         </a>
 
-        <nav>
-          <a href="#">Início</a>
+        <nav className="main-nav" aria-label="Navegação principal">
+          <a className="active" href="#">Início</a>
           <a href="#doramas">Doramas</a>
+          <a href="#atores">Atores</a>
           <a href="#noticias">Notícias</a>
           <a href="#rankings">Rankings</a>
           <a href="#guias">Guias</a>
         </nav>
 
-        <button className="search" aria-label="Pesquisar">⌕</button>
+        <div className="header-tools">
+          <label className="search-box">
+            <span>⌕</span>
+            <input aria-label="Pesquisar" placeholder="Buscar um dorama..." />
+          </label>
+          <button className="menu-button" aria-label="Abrir menu">☰</button>
+        </div>
       </header>
 
-      <section className="hero">
-        <div className="hero-copy">
-          <span className="eyebrow">✦ DORAMA DA SEMANA ✦</span>
-          <h1>Um cantinho para quem <em>ama</em> K-Dramas.</h1>
+      <section className="welcome">
+        <div className="welcome-copy">
+          <span className="eyebrow">✦ BEM-VINDA AO SEU CANTINHO ✦</span>
+          <h1>Um lugar para <em>amar</em>, descobrir e maratonar K-Dramas.</h1>
           <p>
-            Descubra histórias para maratonar, novidades da Coreia, rankings,
-            personagens favoritos e aquele próximo dorama que vai virar sua obsessão.
+            Notícias, doramas em alta, atores favoritos, listas e aquele próximo
+            vício que vai fazer você dizer: só mais um episódio.
           </p>
-          <div className="hero-actions">
-            <a href="#doramas" className="button">Explorar doramas ↗</a>
-            <span className="scribble">사랑해 ♡</span>
+          <div className="welcome-actions">
+            <a href="#doramas" className="button">Começar a explorar ↗</a>
+            <span className="hand-note">사랑해 ♡</span>
+          </div>
+          <div className="welcome-stickers" aria-hidden="true">
+            <span>🍜</span><span>🎬</span><span>♡</span><span>🌸</span>
           </div>
         </div>
 
-        <div className="hero-collage">
-          <div className="hero-photo">
-            <span className="photo-sun">☀</span>
-            <span className="photo-title">SEOUL<br /><b>MEMORIES</b></span>
-            <span className="photo-stamp">K-DRAMA<br />2026</span>
+        <div className="welcome-board">
+          <span className="board-tape tape-left" />
+          <span className="board-tape tape-right" />
+          <div className="board-map">
+            <span className="map-label one">SEOUL</span>
+            <span className="map-label two">한강</span>
+            <span className="map-label three">♡</span>
+            <span className="map-line line-one" />
+            <span className="map-line line-two" />
+            <span className="map-line line-three" />
+            <div className="board-polaroid">
+              <span>SEOUL</span>
+              <strong>MEMORIES</strong>
+              <small>K-DRAMA DIARY · 2026</small>
+            </div>
+            <span className="board-sticker">사랑해</span>
+            <span className="board-flower">🌸</span>
+            <span className="board-camera">📷</span>
           </div>
-          <span className="hero-sticker sticker-one">🌸</span>
-          <span className="hero-sticker sticker-two">♡</span>
-          <span className="hero-sticker sticker-three">🎬</span>
-          <span className="tape"></span>
         </div>
       </section>
 
-      <section className="marquee">
-        <span>🌸 NEW IN SEOUL</span><span>♡ K-DRAMA</span><span>🍜 WATCH LIST</span>
-        <span>✿ 사랑해</span><span>🎬 LET&apos;S WATCH</span>
-      </section>
+      <div className="ticker">
+        <span>🌸 NEW IN SEOUL</span>
+        <span>🍜 WATCH LIST</span>
+        <span>♡ K-DRAMA</span>
+        <span>🎬 LET&apos;S WATCH</span>
+        <span>✿ 사랑해</span>
+        <span>⭐ FAVORITOS</span>
+      </div>
 
-      <section id="doramas" className="section">
+      <section id="doramas" className="portal-section">
         <div className="section-heading">
-          <div><span className="eyebrow">01 · PARA COMEÇAR</span><h2>Em alta agora <i>♡</i></h2></div>
-          <a href="#">Ver todos ↗</a>
+          <div>
+            <span className="eyebrow">01 · AGORA NA SUA TELA</span>
+            <h2>Em exibição <i>♡</i></h2>
+          </div>
+          <a href="#">ver todos ↗</a>
         </div>
-        <div className="card-grid">
-          {dramas.map((drama) => <DramaCard key={drama.title} drama={drama} />)}
+
+        <div className="content-split">
+          <div className="drama-grid">
+            {dramas.map((drama) => (
+              <DramaCard key={drama.title} drama={drama} />
+            ))}
+          </div>
+
+          <aside className="watch-note">
+            <span className="note-pin">📌</span>
+            <span className="eyebrow">WATCH LIST</span>
+            <h3>O que está na sua fila?</h3>
+            <p>Guarde seus próximos dramas e volte quando bater a vontade de maratonar.</p>
+            <div className="watch-lines">
+              <span>♡ Reply 1988</span>
+              <span>♡ When the Spring Comes</span>
+              <span>♡ Our Little Recipe</span>
+            </div>
+            <a href="#" className="text-link">abrir minha lista ↗</a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="atores" className="portal-section actor-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">02 · QUEM ROUBOU A CENA?</span>
+            <h2>Actor Spotlight <i>✦</i></h2>
+          </div>
+          <a href="#">ver elenco ↗</a>
+        </div>
+
+        <div className="actor-layout">
+          <div className="actor-grid">
+            {actors.map((actor) => <ActorCard key={actor.name} actor={actor} />)}
+          </div>
+
+          <div className="love-card">
+            <span className="love-korean">사랑해요</span>
+            <strong>quem é seu<br />novo crush?</strong>
+            <span className="love-sticker">💗</span>
+            <span className="love-small">vote · salve · surte</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="portal-section classics-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">03 · MEMÓRIAS DE SEOUL</span>
+            <h2>Clássicos que moram no coração <i>♡</i></h2>
+          </div>
+          <a href="#">ver clássicos ↗</a>
+        </div>
+
+        <div className="classics-board">
+          <div className="map-copy">
+            <span className="eyebrow">SEOUL K-DRAMA MAP</span>
+            <h3>Uma pequena<br /><em>viagem no tempo.</em></h3>
+            <p>Revisite histórias, casais e personagens que fizeram você se apaixonar.</p>
+            <span className="map-stamp">SEOUL<br />LOVE</span>
+          </div>
+          <div className="classic-polaroids">
+            {classics.map((item, index) => (
+              <article className={`classic-card ${item.tone}`} key={item.title}>
+                <span className="classic-photo">{index === 0 ? "1988" : index === 1 ? "SEOUL" : "♡"}</span>
+                <strong>{item.title}</strong>
+                <small>{item.label}</small>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="category-band">
-        <div className="section-heading">
-          <div><span className="eyebrow">02 · ESCOLHA SEU HUMOR</span><h2>O que você quer assistir?</h2></div>
-        </div>
-        <div className="category-grid">
-          <a href="#" className="category romance"><span>🌸</span><b>Romance</b><small>borboletas no estômago</small></a>
-          <a href="#" className="category comedy"><span>🍜</span><b>Comédia</b><small>para rir e relaxar</small></a>
-          <a href="#" className="category fantasy"><span>🌙</span><b>Fantasia</b><small>um pouco de magia</small></a>
-          <a href="#" className="category thriller"><span>🎞️</span><b>Suspense</b><small>não pisque</small></a>
-        </div>
-      </section>
-
-      <section id="noticias" className="section news-section">
-        <div className="section-heading">
-          <div><span className="eyebrow">03 · DA COREIA PARA VOCÊ</span><h2>Últimas notícias <i>✦</i></h2></div>
-          <a href="#">Todas as notícias ↗</a>
-        </div>
-        <div className="news-layout">
-          <article className="feature-news">
-            <div className="news-art">SEOUL<br /><strong>STORY</strong><span>NEWS ✿</span></div>
-            <span className="eyebrow">K-DRAMA NEWS · HOJE</span>
-            <h3>As novidades que todo fã de dorama precisa conhecer esta semana.</h3>
-            <p>Um espaço editorial para notícias, novidades de elenco e lançamentos.</p>
-          </article>
-          <div className="news-list">
-            {news.map((item, i) => (
-              <a href="#" className="news-item" key={item}>
-                <span>0{i + 1}</span><div><small>NOTÍCIAS · K-DRAMA</small><h3>{item}</h3></div><b>↗</b>
+        <div className="portal-section">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">04 · ESCOLHA SEU HUMOR</span>
+              <h2>O que você quer assistir?</h2>
+            </div>
+          </div>
+          <div className="category-grid">
+            {categories.map((category) => (
+              <a href="#" className={`category ${category.className}`} key={category.name}>
+                <span>{category.emoji}</span>
+                <b>{category.name}</b>
+                <small>{category.copy}</small>
+                <i>↗</i>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="rankings" className="ranking">
-        <div className="ranking-inner">
+      <section className="portal-section reviews-section">
+        <div className="section-heading">
           <div>
-            <span className="eyebrow">04 · FAVORITOS DO MOMENTO</span>
-            <h2>Rankings<br /><em>♡</em> que você vai querer conferir.</h2>
-            <p>Listas feitas para facilitar sua próxima maratona.</p>
-            <a href="#" className="button dark">Ver rankings ↗</a>
+            <span className="eyebrow">05 · FÃS FALAM</span>
+            <h2>Fan reviews <i>♡</i></h2>
           </div>
-          <div className="ranking-list">
-            {["Melhores romances para maratonar", "Doramas mais comentados", "K-Dramas para começar hoje"].map((x, i) => (
-              <div className="rank-row" key={x}><strong>0{i + 1}</strong><span>{x}</span><b>✿</b></div>
+          <a href="#">ler mais ↗</a>
+        </div>
+
+        <div className="review-grid">
+          <article className="review-card">
+            <span className="review-avatar">🌸</span>
+            <span className="stars">★★★★★</span>
+            <p>&ldquo;Eu só queria assistir um episódio e agora estou emocionalmente envolvida com essa família inteira.&rdquo;</p>
+            <small>— uma dorameira apaixonada</small>
+          </article>
+          <article className="review-card mint">
+            <span className="review-avatar">🍜</span>
+            <span className="stars">★★★★★</span>
+            <p>&ldquo;Tem romance, comida, chuva e um protagonista bonito. Basicamente, tudo o que eu precisava.&rdquo;</p>
+            <small>— oficialmente na watchlist</small>
+          </article>
+          <article className="review-card yellow">
+            <span className="review-avatar">🎬</span>
+            <span className="stars">★★★★☆</span>
+            <p>&ldquo;O perigo de entrar no Seoul Bloom é sair daqui com quinze doramas para assistir.&rdquo;</p>
+            <small>— não me arrependo de nada</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="noticias" className="portal-section news-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">06 · DA COREIA PARA VOCÊ</span>
+            <h2>Últimas notícias <i>✦</i></h2>
+          </div>
+          <a href="#">todas as notícias ↗</a>
+        </div>
+
+        <div className="news-layout">
+          <article className="feature-news">
+            <div className="news-art">
+              <span>SEOUL</span>
+              <strong>STORY</strong>
+              <small>NEWS ✿</small>
+            </div>
+            <div className="news-copy">
+              <span className="eyebrow">K-DRAMA NEWS · HOJE</span>
+              <h3>As novidades que todo fã de dorama precisa conhecer esta semana.</h3>
+              <p>Novidades de elenco, lançamentos, bastidores e tudo o que está movimentando o mundo dos K-Dramas.</p>
+              <a href="#" className="text-link">ler matéria ↗</a>
+            </div>
+          </article>
+
+          <div className="news-list">
+            {news.map((item, index) => (
+              <a href="#" className="news-item" key={item}>
+                <span className="news-number">0{index + 1}</span>
+                <div>
+                  <small>NOTÍCIAS · K-DRAMA</small>
+                  <h3>{item}</h3>
+                </div>
+                <b>↗</b>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="guias" className="guide">
-        <span className="guide-flower">🌸</span>
-        <span className="eyebrow">05 · GUIAS</span>
-        <h2>Seu mapa para o<br /><em>universo dos doramas.</em></h2>
-        <p>Onde assistir, por onde começar, listas especiais e muito mais.</p>
-        <a href="#" className="button">Explorar guias ↗</a>
+      <section id="rankings" className="ranking-section">
+        <div className="ranking-inner">
+          <div className="ranking-intro">
+            <span className="eyebrow">07 · FAVORITOS DO MOMENTO</span>
+            <h2>Rankings que vão alimentar sua próxima <em>obsessão.</em></h2>
+            <p>Listas feitas para facilitar sua próxima maratona.</p>
+            <a href="#" className="button dark">ver rankings ↗</a>
+          </div>
+          <div className="ranking-list">
+            {["Melhores romances para maratonar", "Doramas mais comentados", "K-Dramas para começar hoje"].map((item, index) => (
+              <a href="#" className="rank-row" key={item}>
+                <strong>0{index + 1}</strong>
+                <span>{item}</span>
+                <b>✿</b>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-brand">SEOUL<span>BLOOM</span><small>♡ made for K-drama lovers</small></div>
-        <div><small>EXPLORE</small><a href="#">Doramas</a><a href="#">Notícias</a><a href="#">Rankings</a></div>
-        <div><small>SITE</small><a href="#">Sobre nós</a><a href="#">Contato</a><a href="#">Privacidade</a></div>
-        <div className="footer-korean">서울<br /><span>사랑해</span> ♡</div>
+      <section id="guias" className="guide-section">
+        <span className="guide-flower">🌸</span>
+        <span className="guide-film">🎞️</span>
+        <span className="eyebrow">08 · GUIAS SEOUL BLOOM</span>
+        <h2>Seu mapa para o<br /><em>universo dos doramas.</em></h2>
+        <p>Onde assistir, por onde começar, listas especiais e muito mais.</p>
+        <a href="#" className="button">explorar guias ↗</a>
+      </section>
+
+      <footer className="site-footer">
+        <div className="footer-brand">
+          <span>🌸 SEOUL <b>BLOOM</b></span>
+          <small>♡ made for K-drama lovers</small>
+        </div>
+        <div>
+          <small>EXPLORE</small>
+          <a href="#doramas">Doramas</a>
+          <a href="#atores">Atores</a>
+          <a href="#noticias">Notícias</a>
+        </div>
+        <div>
+          <small>DESCUBRA</small>
+          <a href="#rankings">Rankings</a>
+          <a href="#guias">Guias</a>
+          <a href="#">Sobre o Seoul Bloom</a>
+        </div>
+        <div className="footer-korean">
+          서울
+          <span>사랑해 ♡</span>
+          <small>see you in Seoul</small>
+        </div>
       </footer>
     </main>
   );
