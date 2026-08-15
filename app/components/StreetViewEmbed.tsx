@@ -14,15 +14,22 @@ export default function StreetViewEmbed({
   googleMapsUrl,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
 
-  const streetViewUrl = apiKey
-    ? `https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(
-        apiKey
-      )}&location=${encodeURIComponent(
-        coordinates
-      )}&heading=0&pitch=0&fov=90`
-    : "";
+  /*
+   * Versão sem API Key.
+   *
+   * O Google Maps aceita URLs públicas do Street View no formato:
+   * /maps/@?api=1&map_action=pano&viewpoint=LAT,LNG
+   *
+   * Atenção: o Google pode bloquear a exibição dessa página dentro de
+   * iframe dependendo das políticas atuais do Maps. Se isso acontecer,
+   * não é um erro do seu site; a incorporação oficial garantida exige
+   * a Google Maps Embed API.
+   */
+  const streetViewUrl =
+    `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${encodeURIComponent(
+      coordinates
+    )}&heading=0&pitch=0&fov=90`;
 
   return (
     <div className="street-view-shell">
@@ -32,7 +39,7 @@ export default function StreetViewEmbed({
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
       >
-        👀 {open ? "Fechar Street View" : "Ver na vida real"}
+        👀 {open ? 'Fechar Street View' : 'Ver na vida real'}
       </button>
 
       {open && (
@@ -42,29 +49,25 @@ export default function StreetViewEmbed({
               <span>STREET VIEW · 360°</span>
               <strong>{title}</strong>
             </div>
-            <a href={googleMapsUrl} target="_blank" rel="noreferrer">
+
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               ↗ Abrir no Google Maps
             </a>
           </div>
 
-          {streetViewUrl ? (
-            <iframe
-              title={`Street View de ${title}`}
-              src={streetViewUrl}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-              className="street-view-frame"
-            />
-          ) : (
-            <div className="street-view-setup">
-              <strong>Street View</strong>
-              <p>
-                Configure a variável NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY
-                para ativar o Street View dentro do site.
-              </p>
-            </div>
-          )}
+          <iframe
+            title={`Street View de ${title}`}
+            src={streetViewUrl}
+            loading="lazy"
+            allowFullScreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="street-view-frame"
+          />
         </div>
       )}
     </div>
