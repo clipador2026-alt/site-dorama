@@ -3,48 +3,40 @@ import StreetViewEmbed from "./components/StreetViewEmbed";
 
 const dramas = [
   {
-    title: "My Bias, My Boss",
-    meta: "Romance • Comédia • 2026",
+    title: "When the Spring Comes",
+    meta: "Romance • 2026",
     tone: "pink",
-    emoji: "💗",
+    emoji: "🌸",
     status: "EM EXIBIÇÃO",
     rating: "9.1",
-    tag: "novo · tvN",
-    poster: "https://tvn.cjenm.com/ko/Mybiasmyboss/poster/",
-    posterAlt: "Pôster oficial de My Bias, My Boss",
+    tag: "♡ favorito",
   },
   {
-    title: "Our Sticky Love",
-    meta: "Romance • Comédia • 2026",
+    title: "Seoul After Rain",
+    meta: "Romance • Drama",
     tone: "blue",
-    emoji: "🍬",
+    emoji: "☔",
     status: "NOVO",
     rating: "8.8",
-    tag: "Netflix · romance",
-    poster: "https://www.netflix.com/title/82048302",
-    posterAlt: "Pôster oficial de Our Sticky Love",
+    tag: "chuva + romance",
   },
   {
-    title: "Flex X Cop 2",
-    meta: "Ação • Crime • 2026",
+    title: "Our Little Recipe",
+    meta: "Comédia • Romance",
     tone: "cream",
-    emoji: "🕵️",
+    emoji: "🍜",
     status: "QUENTINHO",
     rating: "9.0",
-    tag: "Disney+ · investigação",
-    poster: "https://news.sbs.co.kr/english/article.do?news_id=N1008658684",
-    posterAlt: "Pôster oficial de Flex X Cop 2",
+    tag: "food drama",
   },
   {
-    title: "A Trap Called Desire",
-    meta: "Drama • Vingança • 2026",
+    title: "Moonlight Contract",
+    meta: "Fantasia • Romance",
     tone: "green",
     emoji: "🌙",
     status: "TRENDING",
     rating: "9.3",
-    tag: "KBS · vingança",
-    poster: "https://kbsworld.kbs.co.kr/program/view.php?pg_seq=2661",
-    posterAlt: "Pôster oficial de A Trap Called Desire",
+    tag: "slow burn",
   },
 ];
 
@@ -125,13 +117,6 @@ function DramaCard({ drama }: { drama: (typeof dramas)[number] }) {
   return (
     <article className={`drama-card ${drama.tone}`}>
       <div className="poster">
-        <img
-          className="poster-image"
-          src={drama.poster}
-          alt={drama.posterAlt}
-          loading="lazy"
-        />
-        <div className="poster-overlay" />
         <span className="poster-sticker">{drama.emoji}</span>
         <span className="poster-status">{drama.status}</span>
         <span className="poster-tape" />
