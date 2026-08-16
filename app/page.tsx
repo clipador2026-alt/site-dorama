@@ -1,5 +1,3 @@
-import StreetViewEmbed from "./components/StreetViewEmbed";
-
 const dramas = [
   {
     title: "When the Spring Comes",
@@ -96,11 +94,14 @@ function LocationCard({ location }: { location: (typeof koreaLocations)[number] 
         <p>{location.copy}</p>
         <div className="location-actions">
           <a href={location.map} target="_blank" rel="noreferrer" className="map-button">📍 Google Maps ↗</a>
-          <StreetViewEmbed
-            title={location.title}
-            coordinates={location.coordinates}
-            googleMapsUrl={location.map}
-          />
+          <a
+            href={location.street}
+            target="_blank"
+            rel="noreferrer"
+            className="street-button"
+          >
+            👀 Ver na vida real ↗
+          </a>
         </div>
       </div>
     </article>
