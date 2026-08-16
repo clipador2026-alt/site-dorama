@@ -620,51 +620,8 @@ main { min-height: 100vh; overflow: hidden; }
 @media (max-width:700px){.korea-hero{grid-template-columns:1fr}.korea-stamp{justify-self:start;width:135px;height:135px}.korea-stamp strong{font-size:34px}.korea-highlight-copy{padding:28px 24px}.korea-subheading{align-items:flex-start;flex-direction:column}.location-card{grid-template-columns:1fr}.location-art{min-height:220px;border-right:0;border-bottom:1.5px solid var(--line)}}
 
 
-/* ===== STREET VIEW DENTRO DO SITE ===== */
-.street-view-shell { width: 100%; }
-.street-view-shell .street-button {
-  min-height: 34px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  background: var(--pink-soft);
-  color: var(--ink);
+/* ===== STREET VIEW DIRETO ===== */
+.street-button {
+  text-decoration: none;
   cursor: pointer;
-  font-size: 8px;
-  font-weight: 800;
-}
-.street-view-shell .street-button:hover { transform: translateY(-2px); }
-.street-view-panel {
-  width: min(100%, 900px);
-  margin-top: 10px;
-  overflow: hidden;
-  border: 1.5px solid var(--line);
-  border-radius: 12px;
-  background: var(--white);
-  box-shadow: 5px 6px 0 rgba(36,31,32,.08);
-}
-.street-view-header {
-  min-height: 52px;
-  padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border-bottom: 1px solid rgba(36,31,32,.16);
-}
-.street-view-header > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.street-view-header span { color: var(--pink-deep); font-size: 7px; font-weight: 800; letter-spacing: .12em; }
-.street-view-header strong { font-family: "Playfair Display",Georgia,serif; font-size: 14px; line-height: 1.05; }
-.street-view-header a { flex: 0 0 auto; font-size: 8px; font-weight: 800; border-bottom: 1px solid currentColor; }
-.street-view-frame { display: block; width: 100%; height: 360px; border: 0; }
-.street-view-setup { padding: 24px; text-align: center; }
-.street-view-setup strong { font-family: "Playfair Display",Georgia,serif; font-size: 18px; }
-.street-view-setup p { margin: 7px 0 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
-@media (max-width:700px) {
-  .street-view-header { align-items: flex-start; flex-direction: column; }
-  .street-view-header a { align-self: flex-start; }
-  .street-view-frame { height: 300px; }
 }
