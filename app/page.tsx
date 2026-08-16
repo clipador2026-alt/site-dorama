@@ -62,18 +62,7 @@ const classics = [
 
 const koreaLocations = [
   { title: "Gyeongbokgung Palace", place: "Seoul", category: "HISTÓRIA", type: "history", emoji: "🏯", copy: "O palácio real mais famoso de Seoul e uma das melhores portas de entrada para a história da Coreia.", map: "https://www.google.com/maps/search/?api=1&query=Gyeongbokgung+Palace+Seoul+South+Korea", street: "https://www.google.com/maps/@?api=1&map_action=pano&query=Gyeongbokgung+Palace+Seoul+South+Korea" , coordinates: "37.579617,126.977041"},
- {
-  title: "Yeongjin Beach",
-  place: "Gangneung",
-  category: "K-DRAMA",
-  type: "drama",
-  emoji: "🌊",
-  copy: "O famoso quebra-mar de Goblin, um dos cenários mais reconhecíveis dos K-Dramas.",
-  drama: "Goblin",
-  coordinates: "37.879622,128.833591",
-  map: "https://www.google.com/maps/search/?api=1&query=Jumunjin+Breakwater+Gangneung+South+Korea",
-  street: "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=37.879622,128.833591"
-}
+  { title: "Yeongjin Beach", place: "Gangneung", category: "K-DRAMA", type: "drama", emoji: "🌊", copy: "O famoso quebra-mar de Goblin, um dos cenários mais reconhecíveis dos K-Dramas.", drama: "Goblin", map: "https://www.google.com/maps/search/?api=1&query=Yeongjin+Beach+Gangneung+South+Korea", street: "https://www.google.com/maps/@?api=1&map_action=pano&query=Yeongjin+Beach+Gangneung+South+Korea" , coordinates: "37.920556,128.819722"},
   { title: "Sewoon Plaza", place: "Seoul", category: "K-DRAMA", type: "drama", emoji: "🎬", copy: "O complexo que ganhou vida como Geumga Plaza em Vincenzo.", drama: "Vincenzo", map: "https://www.google.com/maps/search/?api=1&query=Sewoon+Plaza+Seoul+South+Korea", street: "https://www.google.com/maps/@?api=1&map_action=pano&query=Sewoon+Plaza+Seoul+South+Korea" , coordinates: "37.5708,126.9948"},
   { title: "BTS Bus Stop", place: "Gangneung", category: "K-POP", type: "kpop", emoji: "💜", copy: "O ponto de ônibus de Hyangho Beach que se tornou um photo spot inesquecível para ARMYs.", artist: "BTS", map: "https://www.google.com/maps/search/?api=1&query=BTS+Bus+Stop+Hyangho+Beach+Gangneung+South+Korea", street: "https://www.google.com/maps/@?api=1&map_action=pano&query=BTS+Bus+Stop+Hyangho+Beach+Gangneung+South+Korea" , coordinates: "37.9215,128.8224"},
   { title: "Bukchon Hanok Village", place: "Seoul", category: "TURISMO", type: "travel", emoji: "🏘️", copy: "Ruas de casas hanok entre palácios e cafés, perfeitas para caminhar e fotografar.", map: "https://www.google.com/maps/search/?api=1&query=Bukchon+Hanok+Village+Seoul+South+Korea", street: "https://www.google.com/maps/@?api=1&map_action=pano&query=Bukchon+Hanok+Village+Seoul+South+Korea" , coordinates: "37.5826,126.9830"},
