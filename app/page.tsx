@@ -676,8 +676,9 @@ export default function Home() {
           <small>DESCUBRA</small>
           <a href="#rankings">Rankings</a>
           <a href="#guias">Guias</a>
-          <a href="#">Sobre o Seoul Bloom</a>
+          <a href="/sobre">Sobre o Seoul Bloom</a>
         </div>
+        <div><small>INFORMAÇÕES</small><a href="/sobre">Sobre</a><a href="/contato">Contato</a><a href="/politica-de-privacidade">Privacidade</a><a href="/termos-de-uso">Termos de Uso</a></div>
         <div className="footer-korean">
           서울
           <span>사랑해 ♡</span>
