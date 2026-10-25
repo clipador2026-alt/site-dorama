@@ -1,0 +1,3 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "Contato" };
+export default function Contato() { return <main style={{maxWidth:800,margin:"60px auto",padding:24,lineHeight:1.8}}><a href="/">← Voltar ao Seoul Bloom</a><h1>Contato</h1><p>Quer sugerir uma pauta, apontar uma correção ou propor uma parceria?</p><p>Estamos preparando um canal de contato oficial do Seoul Bloom. Enquanto isso, esta página será atualizada quando o endereço de contato estiver disponível.</p><p>Não envie dados pessoais por canais não identificados como oficiais do projeto.</p></main>}
