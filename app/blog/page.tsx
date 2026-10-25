@@ -1,0 +1,5 @@
+import type {Metadata} from "next";
+import Link from "next/link";
+import {artigos,categorias} from "./dados";
+export const metadata:Metadata={title:"Blog | Seoul Bloom",description:"Artigos, guias e descobertas sobre doramas e cultura coreana."};
+export default function Blog(){return <main className="blog-page"><header className="blog-header"><Link href="/">← Seoul Bloom</Link><span>🌸 REVISTA DIGITAL</span><h1>Histórias para florescer.</h1><p>Explore nossos artigos sobre doramas e cultura coreana.</p></header><div className="blog-layout"><nav className="blog-categorias" aria-label="Categorias"><h2>Categorias</h2>{categorias.map(c=><Link key={c.slug} href={`/blog/categoria/${c.slug}`}>{c.nome} ↗</Link>)}</nav><section className="blog-artigos"><h2>Artigos recentes</h2>{artigos.map(a=><article className="blog-card" key={a.slug}><small>{categorias.find(c=>c.slug===a.categoria)?.nome} · {new Date(a.data+"T12:00:00").toLocaleDateString("pt-BR")}</small><h3><Link href={`/blog/${a.slug}`}>{a.titulo}</Link></h3><p>{a.resumo}</p><Link href={`/blog/${a.slug}`}>Ler artigo →</Link></article>)}</section></div></main>}
